@@ -8,12 +8,12 @@ namespace mbgl {
 namespace style {
 
 template <typename T>
-class Function {
+class ZoomFunction {
 public:
     using Stop = std::pair<float, T>;
     using Stops = std::vector<Stop>;
 
-    Function(Stops stops_, float base_)
+    ZoomFunction(Stops stops_, float base_)
         : base(base_), stops(std::move(stops_)) {
         assert(stops.size() > 0);
     }
@@ -23,11 +23,11 @@ public:
 
     T evaluate(float z) const;
 
-    friend bool operator==(const Function& lhs, const Function& rhs) {
+    friend bool operator==(const ZoomFunction& lhs, const ZoomFunction& rhs) {
         return lhs.base == rhs.base && lhs.stops == rhs.stops;
     }
 
-    friend bool operator!=(const Function& lhs, const Function& rhs) {
+    friend bool operator!=(const ZoomFunction& lhs, const ZoomFunction& rhs) {
         return !(lhs == rhs);
     }
 

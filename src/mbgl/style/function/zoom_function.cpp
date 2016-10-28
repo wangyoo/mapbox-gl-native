@@ -1,4 +1,4 @@
-#include <mbgl/style/function.hpp>
+#include <mbgl/style/function/zoom_function.hpp>
 #include <mbgl/style/types.hpp>
 #include <mbgl/util/color.hpp>
 #include <mbgl/util/interpolate.hpp>
@@ -9,7 +9,7 @@ namespace mbgl {
 namespace style {
 
 template <typename T>
-T Function<T>::evaluate(float z) const {
+T ZoomFunction<T>::evaluate(float z) const {
     bool smaller = false;
     float smaller_z = 0.0f;
     T smaller_val = T();
@@ -56,26 +56,26 @@ T Function<T>::evaluate(float z) const {
     }
 }
 
-template class Function<bool>;
-template class Function<float>;
-template class Function<Color>;
-template class Function<std::vector<float>>;
-template class Function<std::vector<std::string>>;
-template class Function<std::array<float, 2>>;
-template class Function<std::array<float, 4>>;
+template class ZoomFunction<bool>;
+template class ZoomFunction<float>;
+template class ZoomFunction<Color>;
+template class ZoomFunction<std::vector<float>>;
+template class ZoomFunction<std::vector<std::string>>;
+template class ZoomFunction<std::array<float, 2>>;
+template class ZoomFunction<std::array<float, 4>>;
 
-template class Function<std::string>;
-template class Function<TranslateAnchorType>;
-template class Function<RotateAnchorType>;
-template class Function<CirclePitchScaleType>;
-template class Function<LineCapType>;
-template class Function<LineJoinType>;
-template class Function<SymbolPlacementType>;
-template class Function<TextAnchorType>;
-template class Function<TextJustifyType>;
-template class Function<TextTransformType>;
-template class Function<AlignmentType>;
-template class Function<IconTextFitType>;
+template class ZoomFunction<std::string>;
+template class ZoomFunction<TranslateAnchorType>;
+template class ZoomFunction<RotateAnchorType>;
+template class ZoomFunction<CirclePitchScaleType>;
+template class ZoomFunction<LineCapType>;
+template class ZoomFunction<LineJoinType>;
+template class ZoomFunction<SymbolPlacementType>;
+template class ZoomFunction<TextAnchorType>;
+template class ZoomFunction<TextJustifyType>;
+template class ZoomFunction<TextTransformType>;
+template class ZoomFunction<AlignmentType>;
+template class ZoomFunction<IconTextFitType>;
 
 } // namespace style
 } // namespace mbgl

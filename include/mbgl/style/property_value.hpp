@@ -1,7 +1,7 @@
 #pragma once
 
 #include <mbgl/util/variant.hpp>
-#include <mbgl/style/function.hpp>
+#include <mbgl/style/function/zoom_function.hpp>
 
 namespace mbgl {
 namespace style {
@@ -14,7 +14,7 @@ inline bool operator!=(const Undefined&, const Undefined&) { return false; }
 template <class T>
 class PropertyValue {
 private:
-    using Value = variant<Undefined, T, Function<T>>;
+    using Value = variant<Undefined, T, ZoomFunction<T>>;
     Value value;
 
     friend bool operator==(const PropertyValue& lhs, const PropertyValue& rhs) {
@@ -26,16 +26,16 @@ private:
     }
 
 public:
-    PropertyValue()                     : value()         {}
-    PropertyValue(         T  constant) : value(constant) {}
-    PropertyValue(Function<T> function) : value(function) {}
+    PropertyValue()                         : value()         {}
+    PropertyValue(             T  constant) : value(constant) {}
+    PropertyValue(ZoomFunction<T> function) : value(function) {}
 
-    bool isUndefined() const { return value.which() == 0; }
-    bool isConstant()  const { return value.which() == 1; }
-    bool isFunction()  const { return value.which() == 2; }
+    bool isUndefined()     const { return value.which() == 0; }
+    bool isConstant()      const { return value.which() == 1; }
+    bool isZoomFunction()  const { return value.which() == 2; }
 
-    const          T & asConstant() const { return value.template get<         T >(); }
-    const Function<T>& asFunction() const { return value.template get<Function<T>>(); }
+    const              T & asConstant()     const { return value.template get<             T >(); }
+    const ZoomFunction<T>& asZoomFunction() const { return value.template get<ZoomFunction<T>>(); }
 
     explicit operator bool() const { return !isUndefined(); };
 

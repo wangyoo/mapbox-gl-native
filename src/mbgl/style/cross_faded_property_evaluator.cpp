@@ -17,7 +17,7 @@ Faded<T> CrossFadedPropertyEvaluator<T>::operator()(const T& constant) const {
 }
 
 template <typename T>
-T getBiggestStopLessThan(const Function<T>& function, float z) {
+T getBiggestStopLessThan(const ZoomFunction<T>& function, float z) {
     const auto& stops = function.getStops();
     for (uint32_t i = 0; i < stops.size(); i++) {
         if (stops[i].first > z) {
@@ -28,7 +28,7 @@ T getBiggestStopLessThan(const Function<T>& function, float z) {
 }
 
 template <typename T>
-Faded<T> CrossFadedPropertyEvaluator<T>::operator()(const Function<T>& function) const {
+Faded<T> CrossFadedPropertyEvaluator<T>::operator()(const ZoomFunction<T>& function) const {
     return calculate(getBiggestStopLessThan(function, parameters.z - 1.0f),
                      getBiggestStopLessThan(function, parameters.z),
                      getBiggestStopLessThan(function, parameters.z + 1.0f));
