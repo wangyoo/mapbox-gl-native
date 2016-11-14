@@ -10,6 +10,8 @@ namespace style {
 template <typename T>
 class ZoomFunction {
 public:
+    using DomainType = float;
+    using RangeType = T;
     using Stop = std::pair<float, T>;
     using Stops = std::vector<Stop>;
 

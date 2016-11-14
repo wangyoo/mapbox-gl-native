@@ -1,15 +1,11 @@
 #pragma once
 
 #include <mbgl/util/variant.hpp>
+#include <mbgl/style/undefined.hpp>
 #include <mbgl/style/function/zoom_function.hpp>
 
 namespace mbgl {
 namespace style {
-
-class Undefined {};
-
-inline bool operator==(const Undefined&, const Undefined&) { return true; }
-inline bool operator!=(const Undefined&, const Undefined&) { return false; }
 
 template <class T>
 class PropertyValue {
