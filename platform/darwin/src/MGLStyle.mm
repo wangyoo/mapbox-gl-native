@@ -190,7 +190,11 @@ static NSURL *MGLStyleURL_emerald;
          layer];
     }
 
-    self.mapView.mbglMap->addLayer(std::unique_ptr<mbgl::style::Layer>(layer.layer));
+    try {
+        self.mapView.mbglMap->addLayer(std::unique_ptr<mbgl::style::Layer>(layer.layer));
+    } catch (std::runtime_error & err) {
+        [NSException raise:@"Could not add layer" format:@"%s", err.what()];
+    }
 }
 
 - (void)insertLayer:(MGLStyleLayer *)layer belowLayer:(MGLStyleLayer *)otherLayer
